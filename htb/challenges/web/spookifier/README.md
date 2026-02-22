@@ -1,7 +1,7 @@
 # Challenge Analysis
 
 The challenge provides the web application source code to us.
-Looking at `application/blueprints/routes.py` we see notice that the `text` query parameter is passed to the `spookify` function.
+Looking at `application/blueprints/routes.py` we notice that the `text` query parameter is passed to the `spookify` function.
 
 ```
 @web.route('/')
