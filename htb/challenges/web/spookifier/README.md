@@ -70,7 +70,7 @@ def generate_render(converted_fonts):
 	return Template(result).render()
 ```
 
-Given the current dataflow, we see observe that the query parameter `text` is being inserted inside the `result` function, which is later passed to the `Mako` render engine, with no sanitization whatsoever. This might be vulnerable to SSTI. 
+Given the current dataflow, we observe that the query parameter `text` is being inserted inside the `result` function, which is later passed to the `Mako` render engine, with no sanitization whatsoever. This might be vulnerable to SSTI. 
 
 ---
 ## Observations
