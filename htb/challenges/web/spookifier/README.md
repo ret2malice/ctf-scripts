@@ -72,7 +72,6 @@ def generate_render(converted_fonts):
 
 Given the current dataflow, we observe that the query parameter `text` is being inserted inside the `result` function, which is later passed to the `Mako` render engine, with no sanitization whatsoever. This might be vulnerable to SSTI. 
 
----
 ## Observations
 
 One important observation is that the first three strings in the `converted_fonts` dictionary cannot contain any dangerous template syntax. This is because of how the `change_font` function performs character substitution.
@@ -83,7 +82,6 @@ The fourth element, however, behaves differently. It replaces alphanumeric and s
 
 This means that SSTI is actually exploitable in the current configuration. Furthermore, exploitation should be trivial, considering that the environment is not being sandboxed, which means, we should be able to have full access to the Python runtime.
 
----
 # Exploitation
 
 To exploit the vulnerability, we can simply pass the following value to the `text` parameter, which allows to access the `os.popen` function to execute any system command and read its output using the `read()` function
@@ -92,7 +90,6 @@ To exploit the vulnerability, we can simply pass the following value to the `tex
 ${self.module.cache.util.os.popen('cat /flag.txt').read()}
 ```
 
----
 # References
 
 https://medium.com/@0xAwali/template-engines-injection-101-4f2fe59e5756
